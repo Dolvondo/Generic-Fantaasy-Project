@@ -50,7 +50,7 @@ var player = {
     strength: 1,
     intellegence: 1,
     diplomacy: 1,
-    inventory: "nothing"
+    inventory: []
 
 }
 //MONSTER STATS
@@ -84,10 +84,11 @@ var rope = {}
 var axe = {}
 
 //STORY BOARD
-player.inventory = prompt("You have no time to lose, which item will you bring with you?", "Torch, Rope, Axe, or Money?");
-alert(player.inventory);
-player.inventory.push = prompt("second item");
-alert(player.inventory);
+player.inventory[player.inventory.length + 1] = prompt("You have no time to lose, which item will you bring with you?", "Torch, Rope, Axe, or Money?");
+alert("You chose the " + player.inventory);
+    
+
+
 //BATTLE SYSTEM
 //Plan - Player gets fighting options
 /**
