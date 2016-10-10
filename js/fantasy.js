@@ -78,7 +78,7 @@ var wolf = {
 // ITEM STATS
 
 var torch = {
-    attribute: "fire"
+    attribute: ["fire", "light"]
 }
 var rope = {}
 var axe = {}
@@ -86,9 +86,20 @@ var axe = {}
 //STORY BOARD
 player.inventory[player.inventory.length + 1] = prompt("You have no time to lose, which item will you bring with you?", "Torch, Rope, Axe, or Money?");
 alert("You chose the " + player.inventory);
-    
+    //World Scenario
+        alert("The forest is covered with a moist black velvet. It is extremely dark.");
+    //Battle Scenario
+        alert("A zombie attacks you!");
+    battle(zombie)
+/**var battle = function(enemy, blah, blah) {
+ * if (this is this enemy)
+ * 
+ * 
+ * 
+ * }
+ *  */ 
 
-
+}
 //BATTLE SYSTEM
 //Plan - Player gets fighting options
 /**
