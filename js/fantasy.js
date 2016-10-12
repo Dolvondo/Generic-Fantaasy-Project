@@ -42,7 +42,9 @@
  * 
  * 
  */
-
+var gameoutcome = "not yet";
+var check = 0;
+var bonusdamage = 0;
 //DEFAULT PLAYER STATS
 var player = {
     health: 5,
@@ -82,15 +84,12 @@ var torch = {
 }
 var rope = {}
 var axe = {}
+var pots = {}
+var money = {
+    attribute: ["valuable"]
+}
 
-//STORY BOARD
-player.inventory[player.inventory.length + 1] = prompt("You have no time to lose, which item will you bring with you?", "Torch, Rope, Axe, or Money?");
-alert("You chose the " + player.inventory);
-    //World Scenario
-        alert("The forest is covered with a moist black velvet. It is extremely dark.");
-    //Battle Scenario
-        alert("A zombie attacks you!");
-    battle(zombie)
+
 /**var battle = function(enemy, blah, blah) {
  * if (this is this enemy)
  * 
@@ -99,23 +98,86 @@ alert("You chose the " + player.inventory);
  * }
  *  */ 
 
-}
-//BATTLE SYSTEM
-//Plan - Player gets fighting options
-/**
- * Step 1 - Check all objects being used
- * Step 2 - Seek for tags
- * Step 3 - activate functions for each tag
- * Step 4 - tag functions will apply data to the battle function
- * Step 5 - Data is crunched
- * Step 6 - Data is displayed
- *  */
 
+//BATTLE SYSTEM
+
+var battleCheck = function(enemy) {
+    console.log("battleCheck is activated")
+    if (enemy == "zombie") {
+        console.log(enemy + "is being checked");
+        tagFire(false);
+        if (check = true) {
+            bonusdamage += 1;
+        }
+        console.log("The zombie is being checked");   
+    }
+
+    if (enemy == "goblin") {
+       console.log(enemy + "is being checked");
+       tagValuable(false);
+       if (check = true) {
+           gameoutcome = "win";
+       }
+    }
+    if (enemy == "wolf") {
+        console.log(enemy + "is being checked");
+        tagFire(false);
+        if (check = true) {
+            bonusdamage += 1;
+        }
+        tagLoud(false);
+        if (check = true) {
+            gameoutcome = "win";
+        }
+    }
+    battle(bonusdamage, gameoutcome);
+}
+
+var battle = function(bonusdamage, gameoutcome) {
+   totaldamage = player.strength + bonusedamage;
+        console.log("Calculated " + totaldamage);
+    
+    
+    
+    alert("You do " + bonusdamage + " damage to the "  + enemy);
+    
+}
 
 //TAG functions
-var tagfire = function() {
-
+var tagFire = function(check) {
+    console.log("tag fire is being checked");
+    for (i=0; i < player.inventory.length; i++) {
+        if (player.inventory[i] = "torch" ) {
+            check = true;
+        } else { check = false }
+    }
+    return check;
 }
-var tagloud = function() {
-
+var tagLoud = function(check) {
+    for (i=0; i < player.inventory.length; i++) {
+        if (player.inventory[i] = "pots" ) {
+            check = true;
+        } else {check = false }
+    }
+    return check;
 }
+var tagValuable = function(check) {
+    console.log("tag valuable is being checked");
+    for (i=0; i < player.inventory.length; i++) {
+        if (player.inventory[i] = "pots" ) {
+            check = true;
+        } else {check = false}
+    }
+    return check;
+}
+
+//STORY BOARD
+player.inventory[player.inventory.length + 1] = prompt("You have no time to lose, which item will you bring with you?", "Torch, Rope, Axe, or Money?");
+alert("You chose the " + player.inventory);
+    //World Scenario
+        alert("The forest is covered with a moist black velvet. It is extremely dark.");
+    //Battle Scenario
+        alert("A zombie attacks you!");
+        var enemy = "zombie"
+        battleCheck("zombie");
+    //STORY BOARD
