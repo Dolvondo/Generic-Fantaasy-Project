@@ -124,7 +124,7 @@ var battleCheck = function(enemy) {
 }
 
 var battle = function(bonusdamage, gameoutcome) {
-   totaldamage = player.strength + bonusedamage;
+   totaldamage = player.strength + bonusdamage;
         console.log("Calculated " + totaldamage);
     
     
