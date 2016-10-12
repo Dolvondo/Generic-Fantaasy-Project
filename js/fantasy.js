@@ -89,16 +89,6 @@ var money = {
     attribute: ["valuable"]
 }
 
-
-/**var battle = function(enemy, blah, blah) {
- * if (this is this enemy)
- * 
- * 
- * 
- * }
- *  */ 
-
-
 //BATTLE SYSTEM
 
 var battleCheck = function(enemy) {
@@ -164,7 +154,7 @@ var tagLoud = function(check) {
 var tagValuable = function(check) {
     console.log("tag valuable is being checked");
     for (i=0; i < player.inventory.length; i++) {
-        if (player.inventory[i] = "pots" ) {
+        if (player.inventory[i] = "money" ) {
             check = true;
         } else {check = false}
     }
