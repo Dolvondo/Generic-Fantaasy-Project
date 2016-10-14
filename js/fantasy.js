@@ -42,6 +42,8 @@
  * 
  * 
  */
+var enemy;
+var weaponchoice = "fists";
 var gameoutcome = "not yet";
 var check = 0;
 var bonusdamage = 0;
@@ -96,7 +98,7 @@ var battleCheck = function(enemy) {
     if (enemy == "zombie") {
         console.log(enemy + "is being checked");
         tagFire(false);
-        if (check = true) {
+        if (check == true) {
             bonusdamage += 1;
         }
         console.log("The zombie is being checked");   
@@ -105,18 +107,18 @@ var battleCheck = function(enemy) {
     if (enemy == "goblin") {
        console.log(enemy + "is being checked");
        tagValuable(false);
-       if (check = true) {
+       if (check == true) {
            gameoutcome = "win";
        }
     }
     if (enemy == "wolf") {
         console.log(enemy + "is being checked");
         tagFire(false);
-        if (check = true) {
+        if (check == true) {
             bonusdamage += 1;
         }
         tagLoud(false);
-        if (check = true) {
+        if (check == true) {
             gameoutcome = "win";
         }
     }
@@ -126,10 +128,28 @@ var battleCheck = function(enemy) {
 var battle = function(bonusdamage, gameoutcome) {
    totaldamage = player.strength + bonusdamage;
         console.log("Calculated " + totaldamage);
-    
-    
-    
-    alert("You do " + bonusdamage + " damage to the "  + enemy);
+    alert("You do " + totaldamage + " damage to the "  + enemy);
+    enemy.health -= totaldamage;
+        // Enemy attacks
+            alert("The " + enemy + "attacks you with rage.");
+            player.health -= enemy.dmg;
+            alert("You have " + player.health + " left.")
+        //Checks who is alive
+            if (player.health < 1) {
+                gameoutcome = "lose";
+            }
+            if (enemy.health < 1) {
+                gameoutcome = "win"
+            }
+        if (player.health > 0 & enemy.health > 0)
+        {
+            battle();
+        }
+        if (gameoutcome = "win") {
+            alert("you won the battle");
+        
+        }
+
     
 }
 
@@ -137,26 +157,26 @@ var battle = function(bonusdamage, gameoutcome) {
 var tagFire = function(check) {
     console.log("tag fire is being checked");
     for (i=0; i < player.inventory.length; i++) {
-        if (player.inventory[i] = "torch" ) {
+        if (player.inventory[i] == "torch" & weaponchoice == "torch") {
             check = true;
-        } else { check = false }
+        } else { check = false; }
     }
     return check;
 }
 var tagLoud = function(check) {
     for (i=0; i < player.inventory.length; i++) {
-        if (player.inventory[i] = "pots" ) {
+        if (player.inventory[i] == "pots" ) {
             check = true;
-        } else {check = false }
+        } else {check = false; }
     }
     return check;
 }
 var tagValuable = function(check) {
     console.log("tag valuable is being checked");
     for (i=0; i < player.inventory.length; i++) {
-        if (player.inventory[i] = "money" ) {
+        if (player.inventory[i] == "money" ) {
             check = true;
-        } else {check = false}
+        } else {check = false;}
     }
     return check;
 }
@@ -166,8 +186,21 @@ player.inventory[player.inventory.length + 1] = prompt("You have no time to lose
 alert("You chose the " + player.inventory);
     //World Scenario
         alert("The forest is covered with a moist black velvet. It is extremely dark.");
+        for (i=0; i < player.inventory.length; i++) {
+            if (player.inventory[i] == "torch") {
+                alert("Luckily you brought a torch with you");
+            }
+        }
+        alert("As you trump through heavily dense swamp you stumble upon a hungry zombie!");
+        var choice = prompt("What should you do? Attack or run?");
+        
+        if (choice == "attack") {
+            enemy = "zombie";
+            weaponchoice = prompt("Choose a weapon that you have. If you have nothing, use fists.")
+            if (weaponchoice == "fists") {battle();} else {battleCheck("zombie");
+        } }
+            
     //Battle Scenario
-        alert("A zombie attacks you!");
-        var enemy = "zombie"
-        battleCheck("zombie");
+    
+        
     //STORY BOARD
